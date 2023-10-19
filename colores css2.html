@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        #muestra {
+            width: 35%;
+            padding: 20px;
+            margin: 15px auto;
+            display: flex;
+            justify-content: center;
+            color: whitesmoke;
+            text-align: center;
+            background-color: rgb(255, 99, 71);
+        }
+
+        #controles {
+            margin: 15px auto;
+            display: flex;
+            justify-content: center;
+        }
+
+        div.control {
+            width: 18%;
+            padding: 20px;
+            margin: 15px;
+            display: inline-block;
+            color: gray;
+            text-align: center;
+        }
+    </style>
+    <script>
+        function changeRGB() {
+            // recogemos la intensidad de cada color
+            var color, r, g, b;
+            r = document.getElementById("deslizanteRojo").value;
+            g = document.getElementById("deslizanteVerde").value;
+            b = document.getElementById("deslizanteAzul").value;
+            color = "rgb(" + r + "," + g + "," + b + ")";
+            // cambiamos el color del texto del bloque de muestra
+            document.querySelector("div#muestra > p").innerHTML = color;
+            // cambiamos el valor de cada párrafo de cada uno de los controles de intensidad
+            document.querySelector("input#deslizanteRojo + p").innerHTML = r;
+            document.querySelector("input#deslizanteVerde + p").innerHTML = g;
+            document.querySelector("input#deslizanteAzul + p").innerHTML = b;
+
+            // y terminamos cambiando el color de fondo del bloque de muestra
+            document.querySelector("#muestra").style.backgroundColor = color;
+        }
+    </script>
+</head>
+
+<body>
+    <div id="muestra">
+        <p>rgb(255,99,71)</p>
+    </div>
+    <div id="controles">
+        <div id="contolRojo" class="control">
+            <p>RED</p>
+            <input onchange="changeRGB()" oninput="changeRGB()" type="range" id="deslizanteRojo" value="255" min="0"
+                max="255">
+            <p>255</p>
+        </div>
+        <div id="contolVerde" class="control">
+            <p>GREEN</p>
+            <input onchange="changeRGB()" oninput="changeRGB()" type="range" id="deslizanteVerde" value="99" min="0"
+                max="255">
+            <p>99</p>
+        </div>
+        <div id="contolAzul" class="control">
+            <p>BLUE</p>
+            <input onchange="changeRGB()" oninput="changeRGB()" type="range" id="deslizanteAzul" value="71" min="0"
+                max="255">
+            <p>71</p>
+        </div>
+    </div>
+</body>
+
+</html>
